@@ -41,7 +41,7 @@ $(document).ready(function() {
 	scroller:       true,
 	order: [ 1, "asc" ],
 		fixedHeader: true,
-		ajax: '{!! route('barang.data') !!}',
+		ajax: "{!! route('barang.data') !!}",
 		columns: [
 			{ data: 'kode', name: 'kode' },
 			{ data: 'nama', name: 'nama' },
