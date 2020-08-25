@@ -38,8 +38,8 @@ $(document).ready(function() {
 		paging: true,
 		deferRender:    true,
 		scrollY:        500,
-    scroller:       true,
-    order: [ 1, "asc" ],
+	scroller:       true,
+	order: [ 1, "asc" ],
 		fixedHeader: true,
 		ajax: '{!! route('barang.data') !!}',
 		columns: [
@@ -68,27 +68,26 @@ $(document).ready(function() {
 					'excel',
 					'csv',
 					{
-                extend: 'pdfHtml5',
-                exportOptions: {
-									page: 'all',
-									columns: ':visible',
-									order: 'applied',
-									search: 'none' 
-								},
-								customize: function (doc) {
-									var now = new Date();
-									var jsDate = now.getDate()+'-'+(now.getMonth()+1)+'-'+now.getFullYear();
-									doc['footer']=(function(page, pages) {
-										return {
-											columns: [
-												{alignment: 'left',text: ['Dibuat: ', { text: jsDate.toString() }]},
-												{alignment: 'right',text: ['Halaman ', { text: page.toString() },	' dari ',	{ text: pages.toString() }]}
-											],
-											margin: 20
-										}
-									});
-								}
-            },
+				extend: 'pdfHtml5',
+				exportOptions: {
+					page: 'all',
+					columns: ':visible',
+					order: 'applied',
+					search: 'none'
+				},
+				customize: function (doc) {
+					var now = new Date();
+					var jsDate = now.getDate()+'-'+(now.getMonth()+1)+'-'+now.getFullYear();
+					doc['footer']=(function(page, pages) {
+						return {
+							columns: [
+								{alignment: 'left',text: ['Dibuat: ', { text: jsDate.toString() }]},
+								{alignment: 'right',text: ['Halaman ', { text: page.toString() },	' dari ',	{ text: pages.toString() }]}
+							],margin: 20
+						}
+					});
+				}
+			},
 					'print'
 				],
 				initComplete: function() {
