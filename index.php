@@ -1,0 +1,1 @@
+<?phpheader(‘Location: public/’);
