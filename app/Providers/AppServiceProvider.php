@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Providers;
+use Route;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -13,7 +14,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        Route::model('brg', Brg::class);
     }
 
     /**

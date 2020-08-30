@@ -163,7 +163,8 @@ return [
 		Illuminate\View\ViewServiceProvider::class,
 		Yajra\DataTables\DataTablesServiceProvider::class,
 		Yajra\DataTables\ButtonsServiceProvider::class,
-		Barryvdh\Snappy\ServiceProvider::class,
+		Yajra\Datatables\HtmlServiceProvider::class,
+		
 
 		/*
 		 * Package Service Providers...
@@ -230,8 +231,7 @@ return [
 		'Validator' => Illuminate\Support\Facades\Validator::class,
 		'View' => Illuminate\Support\Facades\View::class,
 		'Datatables' => Yajra\DataTables\Facades\DataTables::class,
-		'PDF' => Barryvdh\Snappy\Facades\SnappyPdf::class,
-		'SnappyImage' => Barryvdh\Snappy\Facades\SnappyImage::class,
+		
 	],
 
 ];

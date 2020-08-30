@@ -3,7 +3,7 @@
 @section('title', 'Daftar Barang')
 
 @section('content')
-	<table class="table table-borderless table-hover table-sm" id="barang-table">
+	<table class="table table-borderless table-hover table-sm display responsive nowrap" cellspacing="0" width="100%" id="barang-table">
 		<thead>
 			<tr>
 				<th>KODE</th>
@@ -23,8 +23,7 @@
 
 @stop
 @section('js')
-<script src="js/jquery-3.5.1.js"></script> 
-<script src="vendor/datatables/dataTables.js"></script> 
+<script src="vendor/datatables/datatables.js"></script> 
 <script src="vendor/datatables/Buttons-1.6.3/js/dataTables.buttons.min.js"></script> 
 <script src="vendor/datatables/Buttons-1.6.3/js/buttons.semanticui.min.js"></script> 
 <script src="vendor/datatables/Buttons-1.6.3/js/buttons.colVis.min.js"></script> 
@@ -56,7 +55,7 @@ $(document).ready(function() {
 					colvisRestore: "Reset Kolom"
 				}
 		},
-		 dom: "<'row'<'col-sm-6'B><'col-sm-6'f>>tr<'row'<'col-sm-6'i><'col-sm-6'C>>",
+		 dom: "<'row'<'col-sm-6'B><'col-sm-6'f>>tr<'row'<'col-sm-6'i><'col-sm-6'l>>",
 		 buttons: [
 			{extend: 'colvis', postfixButtons: [ 'colvisRestore' ] },
 			{extend: 'pdfHtml5',  title: 'Daftar Barang', "text":'<i class="fa fa-copy" />' },

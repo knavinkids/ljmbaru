@@ -1,23 +1,28 @@
 <?php
 
 namespace App\Http\Controllers;
-use DB;
 use Illuminate\Http\Request;
 use App\Barang;
+use App\Baranglite;
 use DataTables;
+use App\Http\Resources\BarangCollection;
 class BarangController extends Controller
 {
 	public function json(){
-		return DataTables::of(Barang::where('aktif','1'))->make(true);
+		$data=Baranglite::all();
+        return response()->json($data);
 	}
 	public function index(){
 		$data=Barang::where('aktif','1');
 		return view('barang.index', compact('data'));
 	}
+	public function test(){
+		return new BarangCollection(Barang::get());
+	}
 	
 	public function daftar(){
 		return DataTables::of(Barang::where('aktif','1'))->make(true);
-	  }
+	}
 	public function create()
 	{
 		//

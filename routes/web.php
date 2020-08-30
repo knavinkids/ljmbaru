@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\DataTables\UsersDataTable;
 use App\DataTables\StokDataTable;
+use App\DataTables\KontakDataTable;
+use App\Http\Resources\BarangResource;
+use App\Barang;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,20 +19,29 @@ use App\DataTables\StokDataTable;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+	return view('welcome');
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('users', function(UsersDataTable $dataTable) {
-    return $dataTable->render('users');
-});
+
 Route::get('stok', function(StokDataTable $dataTable) {
-    return $dataTable->render('stok.index');
+	return $dataTable->render('stok.index');
 });
 
-Route::get('kontak-data', 'KontakController@daftar')->name('kontak.data');
-Route::resource('barang', 'BarangController');
 Route::get('barang-data', 'BarangController@daftar')->name('barang.data');
+Route::get('brg-data', 'BarangController@json')->name('barang.json');
+Route::get('getbarang', 'Api\DataController@barangtojson')->name('barang.json');
+Route::get('getkontak', 'Api\DataController@kontaktojson')->name('kontak.json');
+Route::get('/btest2', function(){
+	return new BarangResource(Barang::all());
+});
+
+Route::get('barang-json', function() {
+	$model = App\Barang::query();
+	$modelx = DataTables::eloquent($model)->only(['id','kode','jenis', 'nama','merk','jual2','jual4']);
+	return response()->json(  $model );
+});
 Route::resource('kontak', 'KontakController');
+Route::resource('barang', 'BarangController');

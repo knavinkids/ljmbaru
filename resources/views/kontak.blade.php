@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Daftar User')
+@section('title', 'Daftar Pelanggan')
 
 @section('content')
 {!! $dataTable->table() !!}

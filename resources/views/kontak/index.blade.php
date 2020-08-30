@@ -3,7 +3,7 @@
 @section('title', 'Daftar Pelanggan')
 
 @section('content')
-	<table class="table table-borderless table-hover table-sm" id="kontak-table">
+	<table class="table table-borderless table-hover table-sm display responsive nowrap" cellspacing="0" width="100%"  id="kontak-table">
 		<thead>
 			<tr>
 				<th>KODE</th>
@@ -16,14 +16,13 @@
 	</table>
 @stop
 @section('css')
-<link rel="stylesheet" href="css/bootstrap.css"> 
 <link rel="stylesheet" href="css/dataTables.bootstrap4.css"> 
-<link rel="stylesheet" href="css/responsive.bootstrap4.css">  
+<link rel="stylesheet" href="vendor/datatables/Buttons-1.6.3/css/buttons.dataTables.min.css">  
+<link rel="stylesheet" href="vendor/datatables/Buttons-1.6.3/css/buttons.semanticui.min.css">   
 
 @stop
 @section('js')
-<script src="js/jquery-3.5.1.js"></script> 
-<script src="vendor/datatables/dataTables.js"></script> 
+<script src="vendor/datatables/datatables.js"></script> 
 <script src="vendor/datatables/Buttons-1.6.3/js/dataTables.buttons.min.js"></script> 
 <script src="vendor/datatables/Buttons-1.6.3/js/buttons.bootstrap.min.js"></script> 
 <script src="js/dataTables.bootstrap4.js"></script> 
@@ -49,8 +48,56 @@ $(document).ready(function() {
 			loadingIndicator: true
 		},
 		
-		 dom: "<'row'<'col-sm-6'B><'col-sm-6'f>>tr<'row'<'col-sm-6'i><'col-sm-6'>>",
-		 buttons: ['copy', 'excel', 'pdf']
+		language: {
+				buttons: {
+					colvis : 'show / hide',
+					colvisRestore: "Reset Kolom"
+				}
+		},
+		 dom: "<'row'<'col-sm-6'B><'col-sm-6'f>>tr<'row'<'col-sm-6'i><'col-sm-6'l>>",
+		 buttons: [
+			{extend: 'colvis', postfixButtons: [ 'colvisRestore' ] },
+			{extend: 'pdfHtml5',  title: 'Daftar Barang', "text":'<i class="fa fa-copy" />' },
+			{
+				extend: 'collection',
+				text: 'Export',
+				buttons: [
+					'copy',
+					'excel',
+					'csv',
+					{
+				extend: 'pdfHtml5',
+				exportOptions: {
+					page: 'all',
+					columns: ':visible',
+					order: 'applied',
+					search: 'none'
+				},
+				customize: function (doc) {
+					var now = new Date();
+					var jsDate = now.getDate()+'-'+(now.getMonth()+1)+'-'+now.getFullYear();
+					doc['footer']=(function(page, pages) {
+						return {
+							columns: [
+								{alignment: 'left',text: ['Dibuat: ', { text: jsDate.toString() }]},
+								{alignment: 'right',text: ['Halaman ', { text: page.toString() },	' dari ',	{ text: pages.toString() }]}
+							],margin: 20
+						}
+					});
+				}
+			},
+					'print'
+				],
+				initComplete: function() {
+					$('.buttons-copy').html('<i class="fa fa-copy" />')
+					$('.buttons-csv').html('<i class="fa fa-file-text-o" />')
+					$('.buttons-excel').html('<i class="fa fa-file-excel-o" />')
+					$('.buttons-pdf').html('<i class="fa fa-file-pdf-o" />')
+					$('.buttons-print').html('<i class="fa fa-print" />')
+				}
+			}
+		],
+	
 	});
 });
 </script>

@@ -11,6 +11,7 @@ use Yajra\DataTables\Services\DataTable;
 
 class BarangDataTable extends DataTable
 {
+	
 	public function dataTable($query)
 	{
 		return datatables()
