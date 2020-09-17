@@ -34,6 +34,8 @@ Route::get('barang-data', 'BarangController@daftar')->name('barang.data');
 Route::get('brg-data', 'BarangController@json')->name('barang.json');
 Route::get('getbarang', 'Api\DataController@barangtojson')->name('barang.json');
 Route::get('getbarang/{idbr}', 'Api\DataController@barangshow');
+Route::get('getstok', 'Api\DataController@stoktojson');
+Route::get('getstoklite', 'Api\DataController@stoklitetojson')->name('stoklite.json');
 Route::get('getkontak', 'Api\DataController@kontaktojson')->name('kontak.json');
 Route::get('getkontak/{idkt}', 'Api\DataController@kontakshow');
 Route::get('/btest2', function(){
