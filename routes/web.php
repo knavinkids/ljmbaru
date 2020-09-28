@@ -44,8 +44,18 @@ Route::get('/btest2', function(){
 
 Route::get('barang-json', function() {
 	$model = App\Barang::query();
-	$modelx = DataTables::eloquent($model)->only(['id','kode','jenis', 'nama','merk','jual2','jual4']);
-	return response()->json(  $model );
+	$modelx = DataTables::eloquent($model)->only(['id','jual2','stok']);
+	return response()->json(  $modelx );
 });
+Route::get('getemployee','Api\DataController@employeetojson');
 Route::resource('kontak', 'KontakController');
 Route::resource('barang', 'BarangController');
+Route::put('updateproduk','Api\DataController@updateproduk');
+Route::post('addemployee','Api\DataController@addemployee');
+Route::post('updateemployee','Api\DataController@updateemployee');
+Route::get('/simpanproduk','Api\DataController@simpanproduk');
+Route::get('getproduk','Api\DataController@produktojson');
+Route::get('getpiutangjs','Api\PiutangController@tojson');
+Route::get('getpiutangjs/{id}','Api\PiutangController@detail');
+Route::get('getkontakjs','Api\MinikontakController@tojson');
+Route::get('getkontakjs/{id}','Api\MinikontakController@detail');
